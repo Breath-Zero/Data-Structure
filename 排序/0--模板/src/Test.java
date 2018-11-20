@@ -7,7 +7,7 @@
  **/
 public class Test {
     // 排序代码
-    public static void sort(int[] a) {
+    public static void sort(int[] array) {
 
     }
 
@@ -20,16 +20,16 @@ public class Test {
     }
 
     // 交换
-    private static void Swap(int[] a, int i, int j) {
-        int t = a[i];
-        a[i] = a[j];
-        a[j] = t;
+    private static void Swap(int[] array, int i, int j) {
+        int t = array[i];
+        array[i] = array[j];
+        array[j] = t;
     }
 
     // 输出
-    private static void show(int[] a) {
-        for (int i = 0; i < a.length; i++) {
-            System.out.print(a[i] + " ");
+    private static void show(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
         }
         System.out.println();
     }
@@ -43,12 +43,12 @@ public class Test {
         System.out.print("最终输出：");
         // 3、调用show(a)方法
 
-        int[] a = {1,3,5,7,9,0,2,4,6,8};
+        int[] array = {1,3,5,7,9,0,2,4,6,8};
         System.out.print("初始输出：");
-        show(a);
+        show(array);
         System.out.println("------------------------------");
-        sort(a);
+        sort(array);
         System.out.print("最终输出：");
-        show(a);
+        show(array);
     }
 }
