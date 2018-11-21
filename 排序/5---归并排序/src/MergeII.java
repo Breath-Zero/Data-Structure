@@ -1,30 +1,40 @@
 /**
- * @ClassName: Merge
+ * @ClassName: MergeII
  * @Description: TODO
  * @Author: Mr.Ye
- * @Data: 2018-11-20 13:16
+ * @Data: 2018-11-21 13:55
+ * @Version: 2.0
+ *
+ * 思路：
+ * 先原地两个两个比较，
+ * 然后四个四个比较,依次下去
+ * 最终会比较完成整个数组
+ *
  **/
-public class Merge {
+public class MergeII {
     private static int[] temp; // 临时数组
 
-    // 排序代码
-    // 方法1：  自顶向下归并
-    public static void sort1(int[] array) {
-        temp = new int[array.length]; // 给临时数组分配空间
-        _sort(array, 0, array.length - 1);
-    }
+    //---------------------------------------------------------------------
+    // 方法2：  自底向上归并
+    public static void sort2(int[] array) {
+        int len = array.length;
+        temp = new int[len];
+        for (int sz = 1; sz < len; sz += sz) {
+            for (int le = 0; le < len - sz; le += sz+sz) {
+                // 保证最有右边的指针不能越界，所以如果越界了，直接输入的是最后一个元素的下标
+//                int sum = 0;
+//                if ((le + sz + sz - 1) < (len - 1))
+//                    sum = le + sz + sz - 1;
+//                else
+//                    sum = len - 1;
+//
+//                merge(array, le, le + sz - 1, sum);
 
-    private static void _sort(int[] array, int left, int right) {
-        // 将数组array[left，right]排序
-        if (left >= right) {
-            return;
+                merge(array, le, le + sz - 1, Math.min(le + sz + sz - 1, len - 1));
+            }
         }
-        int mid = left + (right - left)/2;
-
-        _sort(array, left, mid); // 左边排序
-        _sort(array, mid + 1, right); // 右边排序
-        merge(array, left, mid, right); // 归并结果
     }
+//---------------------------------------------------------------------
 
     public static void merge(int[] array, int start, int mid, int end) {
         int left1 = start, left2 = mid + 1;
@@ -73,9 +83,8 @@ public class Merge {
         show(array);
         System.out.println("------------------------------");
 
-        sort1(array); // 方法1
+        sort2(array); // 方法2
         System.out.print("最终输出：");
         show(array);
     }
 }
-
