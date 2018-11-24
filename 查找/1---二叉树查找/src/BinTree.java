@@ -24,6 +24,11 @@ class BinTreeNode {
             this.data = data;
         }
     }
+
+    public Node getRoot() {
+        return root;
+    }
+
     //-----------------------------------------------------------
 
 
